@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Google Test UI</title>
+        <style>
+            div div {
+                height: 3em;
+                margin: 2px;
+                text-align: center;
+                float: left;
+                background-color: black;
+                color: white;
+            }
+
+            div.clicked {
+                background-color: blue;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="container"></div>
+        <script>
+            let numDivs = 10;
+            for (let i = 1; i <= numDivs; i++) {
+                let newDiv = document.createElement('div');
+                newDiv.id = i;
+                newDiv.setAttribute('style', 'width: calc(' + 100 / numDivs + '% - 4px);');
+                newDiv.addEventListener('click', toggle);
+                document.getElementById('container').appendChild(newDiv);
+            }
+
+            function toggle(e) {
+                let blue = document.getElementsByClassName('clicked')[0];
+                if (blue) {
+                    blue.className = '';
+                    blue.innerText = 'Turning OFF ' + blue.id;
+                    setTimeout(() => {
+                        blue.innerText = '';
+                    }, 1000);
+                }
+                e.target.className = 'clicked';
+                e.target.innerText = 'Turning ON ' + e.target.id;
+            }
+        </script>
+    </body>
+</html>
